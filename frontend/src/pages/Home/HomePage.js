@@ -8,7 +8,7 @@ import NotFound from '../../components/NotFound/NotFound';
 
 
 
-//const initialState = { foods: [] };
+
 const initialState = { foods: [], tags: []};
 
 const reducer = (state, action) => {
@@ -44,7 +44,7 @@ export default function HomePage() {
     <>
     < Search />
     < Tags tags={tags}/>
-    {foods.length === 0 && <NotFound />}
+    {foods.length === 0 && <NotFound linkText= "Reset Search"/>}
     < Thumbnails foods = {foods} />
     
     </>

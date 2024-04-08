@@ -6,6 +6,8 @@ import StarRating from '../../components/StarRating/StarRating';
 import Tags from '../../components/Tags/Tags';
 import Price from '../../components/Price/Price';
 import { useCart } from '../../hooks/useCart';
+import NotFound from '../../components/NotFound/NotFound';
+import axios from 'axios';
 
 export default function FoodPage() {
   
@@ -20,16 +22,18 @@ export default function FoodPage() {
 };
 
    useEffect(() => {
+   
       getById(id).then(setFood);
  },[id]);
   
   return ( 
     <>
-     { food && (
+     { !food ? (<NotFound message="Food Not Found!" linkText="Back To Homepage " />  //if the food is not available
+     ): (
          <div className={classes.container}>
           <img 
           className={classes.image}
-          src={`/foods/${food.imageUrl}`}
+          src={`${food.imageUrl}`}
           alt={food.name}
     />
     
@@ -67,7 +71,7 @@ export default function FoodPage() {
           </div>
        <div className={classes.cook_time}>
         <span>
-            Time to cook about<strong>{food.cookTime}</strong>minutes
+            Time to cook about  <strong>{food.cookTime}</strong>  minutes
         </span>
        </div>
      

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect} from 'react';
-import { sample_foods } from '../data';
+
 
 const CartContext = createContext(null);
 const CART_KEY = 'cart';  
@@ -16,29 +16,35 @@ export default function CartProvider({ children }) {
     const [totalPrice,setTotalPrice] = useState(initCart.totalPrice);
     const [totalCount,setTotalCount] = useState(initCart.totalCount);
 
-   useEffect(() => {
-   
-     const totalPrice = sum(cartItems.map(item => item.price));
-     const totalCount = sum(cartItems.map(item => item.quantity));
-      
-     setTotalPrice(totalPrice);
-     setTotalCount(totalCount);
+    useEffect(() => {
+      const totalPrice = sum(cartItems.map(item => item.price));
+      const totalCount = sum(cartItems.map(item => item.quantity));
+    
+      setTotalPrice(totalPrice);
+      setTotalCount(totalCount);
+    
+      // Store updated cart in local storage
+      localStorage.setItem(
+        CART_KEY,
+        JSON.stringify({
+          items: cartItems,
+          totalPrice,
+          totalCount,
+        })
+      );
+    }, [cartItems]); // Run this effect only when cartItems change
+    
 
-     localStorage.setItem(CART_KEY, JSON.stringify({
-        items:cartItems,
-        totalPrice,
-        totalCount,
-     })
-     
-     );
-
-
-   }, [cartItems]);
-
-   function getCartFromLocalStorage(){
+   function getCartFromLocalStorage(){                     //without localstorage method ,all the cart details will loose when refresh
+     try{
        const storedCart = localStorage.getItem(CART_KEY);
+       console.log("Stored cart: ", storedCart); //Log stored cart content
        return storedCart? JSON.parse(storedCart) : EMPTY_CART;
+   } catch (error){
+       console.error("Error parsing stored cart:" , error);
+       return EMPTY_CART;
    }
+  }
 
 
 
