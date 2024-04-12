@@ -1,6 +1,7 @@
-/*.container {
+.container {
     margin: 1rem 0 6rem 2rem;
     display: flex;
+    margin: 0 0 6rem 2rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -29,4 +30,4 @@
   .buttons {
     margin: 2rem;
     width: 35rem;
-  }  */
+  }  

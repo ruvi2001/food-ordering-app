@@ -8,7 +8,7 @@ import './axiosConfig';
 import { AuthProvider } from './hooks/useAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import './Interceptors/authInterceptor';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -10,7 +10,8 @@ import  classes from './checkoutPage.module.css';
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-
+import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
+import Map from '../../components/Map/Map';
 export default function CheckoutPage() {
 
     const { cart } = useCart();
@@ -37,9 +38,9 @@ export default function CheckoutPage() {
      };
 
 
-  return(
+  return (
     <>
-      <form onSubmit={handleSubmit(submit)} className={classes.container}>
+    <form onSubmit={handleSubmit(submit)} className={classes.container}>
         <div className={classes.content}>
           <Title title="Order Form" fontSize="1.6rem" />
           <div className={classes.inputs}>
@@ -56,11 +57,17 @@ export default function CheckoutPage() {
               error={errors.address}
             />
             </div> 
-
+        <OrderItemsList order={order} /> 
         </div>
         <div>
           <Title title="Choose Your Location" fontSize="1.6rem" />
-
+          <Map
+             location={order.addressLatLng}
+             onChange={latlng => {
+               console.log(latlng);
+               setOrder({ ...order, addressLatLng: latlng });
+             }}
+           />
         </div>
 
         <div className={classes.buttons_container}>

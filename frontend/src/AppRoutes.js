@@ -20,7 +20,7 @@ export default function AppRoutes() {
     <Route path="/cart" element={<CartPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} />
-    <Route path="/checkout" element={<AuthRoute />} />
+    
     <Route 
         path="/checkout"
         element={

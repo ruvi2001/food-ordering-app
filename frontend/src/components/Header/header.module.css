@@ -44,7 +44,7 @@
 
 .menu{                             /*can only use absolute inside the relative,instead it will work as fixed position */
     position: absolute;  
-    z-index: 1;                    /*to keep it top of everything */
+    z-index: 1001;                    /*to keep it top of everything */
     background-color: whitesmoke;
     display: none;
 }
