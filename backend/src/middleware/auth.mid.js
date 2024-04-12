@@ -1,5 +1,7 @@
-import { verify } from 'jsonwebtoken';
-import { UNAUTHORIZED } from '../constants/httpStatus';
+import jwt from 'jsonwebtoken';
+const { verify } = jwt;
+
+import { UNAUTHORIZED } from '../constants/httpStatus.js';
 
 
 export default (req, res, next) => {

@@ -32,5 +32,5 @@ app.listen(PORT, () => {
 });
 
 
-export default router;
+export default app;
 
